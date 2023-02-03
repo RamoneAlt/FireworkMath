@@ -146,9 +146,9 @@ body {
 <body>
 
 <select id="mode" class="dropdown">
-  <option value="easy">Easy</option>
-  <option value="normal">Normal</option>
-  <option value="hard">Hard</option>
+  <option value="easy">Easy *</option>
+  <option value="normal">Basic *</option>
+  <option value="hard">Hard *</option>
   <option value="division">Division</option>
 </select>
 
@@ -253,9 +253,13 @@ function generateEquation() {
     num1 = Math.floor(Math.random() * 87);
     num2 = Math.floor(Math.random() * 72);
   }   else if (mode === "division") {
-    operator = Math.random() < 0.5 ? "/" : "/";
-    num1 = Math.floor(Math.random() * 80) * 2;
+     operator = Math.random() < 0.5 ? "/" : "/";
     num2 = Math.floor(Math.random() * 80) * 2;
+    num1 = Math.floor(Math.random() * 80) * 2;
+    while (num1 >= 200 || num2 >= 200 || num1 < num2) {
+      num1 = Math.floor(Math.random() * 80) * 2;
+      num2 = Math.floor(Math.random() * 80) * 2;
+      }
   }
 
   equation = `${num1} ${operator} ${num2}`;
