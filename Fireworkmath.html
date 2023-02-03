@@ -193,7 +193,7 @@ function checkAnswer() {
     scoreEl.innerHTML = `Score: ${score}`;
 displayFireworks();
   } else {
-    messageEl.innerHTML = `Incorrect. The answer was ${answer}.`;
+    messageEl.innerHTML = `Incorrect. The answer was ${answer}`;
     score = 0;
     scoreEl.innerHTML = `Score: ${score}`;
   }
@@ -228,30 +228,39 @@ function displayFireworks() {
 
 function generateEquation() {
   let num1;
+  let operator;
   let num2;
- if (mode === "normal") {
-num1 = Math.floor(Math.random() * 56) * 15;
-num2 = Math.floor(Math.random() * 67) * 9;
-} else if (mode === "hard") {
-num1 = Math.floor(Math.random() * 199) * 17;
-num2 = Math.floor(Math.random() * 272) * 24;
-} else if (mode === "easy") {
-num1 = Math.floor(Math.random() * 87) * 10;
-num2 = Math.floor(Math.random() * 72);
-}
-  const operator = Math.random() < 0.5 ? "*" : "*";
+  if (mode === "normal") {
+    operator = Math.random() < 0.5 ? "*" : "*";
+    num1 = Math.floor(Math.random() * 56) * 15;
+    num2 = Math.floor(Math.random() * 67) * 9;
+  } else if (mode === "hard") {
+    operator = Math.random() < 0.5 ? "*" : "*";
+    num1 = Math.floor(Math.random() * 199) * 17;
+    num2 = Math.floor(Math.random() * 272) * 24;
+  }  else if (mode === "easy") {
+    operator = Math.random() < 0.5 ? "*" : "*";
+    num1 = Math.floor(Math.random() * 87);
+    num2 = Math.floor(Math.random() * 72);
+  }   else if (mode === "division") {
+    operator = Math.random() < 0.5 ? "/" : "/";
+    num1 = Math.floor(Math.random() * 80) * 2;
+    num2 = Math.floor(Math.random() * 80) * 2;
+  }
+
   equation = `${num1} ${operator} ${num2}`;
   switch (operator) {
     case "*":
       answer = num1 * num2;
       break;
-    case "*":
-      answer = num1 * num2;
+    case "/":
+      answer = Math.round((num1 / num2) * 10) / 10;
       break;
   }
 }
 
 generateEquation();
-equationEl.innerHTML = equation
+equationEl.innerHTML = equation;
+
 </script>
 </html>
