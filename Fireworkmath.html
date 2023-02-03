@@ -146,6 +146,7 @@ body {
 <body>
 
 <select id="mode" class="dropdown">
+  <option value="baby">Baby *</option>
   <option value="easy">Easy *</option>
   <option value="normal">Basic *</option>
   <option value="hard">Hard *</option>
@@ -178,7 +179,7 @@ const modeSelectEl = document.getElementById("mode");
 let equation;
 let answer;
 let score = 0;
-let mode = "easy";
+let mode = "baby";
 
 submitEl.addEventListener("click", checkAnswer);
 inputEl.addEventListener("keyup", (event) => {
@@ -237,6 +238,7 @@ function displayFireworks() {
 }
 
 function generateEquation() {
+
   let num1;
   let operator;
   let num2;
@@ -252,15 +254,19 @@ function generateEquation() {
     operator = Math.random() < 0.5 ? "*" : "*";
     num1 = Math.floor(Math.random() * 87);
     num2 = Math.floor(Math.random() * 72);
-  }   else if (mode === "division") {
+  }  else if (mode === "baby") {
+    operator = Math.random() < 0.5 ? "*" : "*";
+    num1 = Math.floor(Math.random() * 12) + 1;
+    num2 = Math.floor(Math.random() * 12) + 1;
+  }  else if (mode === "division") {
      operator = Math.random() < 0.5 ? "/" : "/";
     num2 = Math.floor(Math.random() * 80) * 2;
     num1 = Math.floor(Math.random() * 80) * 2;
     while (num1 >= 200 || num2 >= 200 || num1 < num2) {
       num1 = Math.floor(Math.random() * 80) * 2;
       num2 = Math.floor(Math.random() * 80) * 2;
-      }
   }
+}
 
   equation = `${num1} ${operator} ${num2}`;
   switch (operator) {
